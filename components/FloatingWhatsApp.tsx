@@ -11,7 +11,6 @@ export function FloatingWhatsApp() {
       aria-label="Falar com a Perini Engenharia pelo WhatsApp"
     >
       <Icon name="whatsapp" className="h-7 w-7" />
-      <span>WhatsApp</span>
     </a>
   );
 }
