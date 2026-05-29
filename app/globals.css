@@ -222,6 +222,22 @@ textarea {
   width: 100%;
 }
 
+.h-5 {
+  height: 1.25rem;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.h-7 {
+  height: 1.75rem;
+}
+
+.w-7 {
+  width: 1.75rem;
+}
+
 .hero-section,
 .page-hero {
   position: relative;
@@ -522,8 +538,10 @@ textarea {
 
 .trust-band {
   border-block: 1px solid var(--line);
-  background: var(--charcoal);
-  padding: 4rem 0;
+  background:
+    linear-gradient(135deg, rgba(227, 27, 35, 0.08), transparent 30%),
+    var(--charcoal);
+  padding: 3rem 0;
   color: var(--white);
 }
 
@@ -535,17 +553,38 @@ textarea {
 .trust-item {
   height: 100%;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.03);
-  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.035);
+  padding: 1.15rem;
+  display: grid;
+  grid-template-columns: 2.75rem 1fr;
+  align-items: center;
+  gap: 0.95rem;
+  min-height: 5.9rem;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
 }
 
 .trust-item svg {
   color: var(--red);
+  padding: 0.58rem;
+  box-sizing: content-box;
+  border: 1px solid rgba(227, 27, 35, 0.24);
+  background: rgba(227, 27, 35, 0.08);
+}
+
+.trust-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(227, 27, 35, 0.28);
+  background: rgba(255, 255, 255, 0.055);
 }
 
 .trust-item h3 {
-  margin: 1.25rem 0 0;
-  font-size: 1rem;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  letter-spacing: 0;
 }
 
 .portfolio-card {
