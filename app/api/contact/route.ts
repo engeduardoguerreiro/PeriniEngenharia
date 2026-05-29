@@ -75,6 +75,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "Informe um e-mail válido." }, { status: 400 });
     }
 
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json({ message: "Serviço de envio de e-mail ainda não configurado." }, { status: 503 });
+    }
+
     const resend = getResend();
     const subject = `Nova solicitação de orçamento - ${payload.service}`;
 
