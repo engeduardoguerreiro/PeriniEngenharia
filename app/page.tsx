@@ -18,11 +18,17 @@ export default function HomePage() {
           <div className="container hero-layout">
             <Reveal className="hero-copy">
               <div className="section-kicker">Engenharia elétrica e automação</div>
-              <h1>Soluções elétricas, automação e projetos técnicos com precisão e confiabilidade.</h1>
+              <h1>Engenharia elétrica para painéis, automação e projetos técnicos.</h1>
               <p>
-                Atuamos na montagem de quadros elétricos, automação, adequações, manutenção preventiva,
-                projetos CAD e retrofit de painéis.
+                Montagem de quadros elétricos, automação, adequações, manutenção preventiva,
+                projetos CAD e retrofit com acabamento técnico e segurança operacional.
               </p>
+              <div className="hero-tags" aria-label="Principais serviços">
+                <span>Quadros elétricos</span>
+                <span>Automação</span>
+                <span>Projetos CAD</span>
+                <span>Retrofit</span>
+              </div>
               <div className="hero-actions">
                 <Link href="/contato" className="button button-primary">
                   Solicitar orçamento
@@ -43,9 +49,9 @@ export default function HomePage() {
                 </div>
                 <div className="hero-panel-list">
                   {[
-                    ["panel", "Painéis organizados e identificados", "Acabamento técnico, leitura clara e padrão profissional de montagem."],
-                    ["file", "Documentação técnica em CAD", "Diagramas, layouts e registros técnicos para operação e manutenção."],
-                    ["shield", "Segurança e confiabilidade", "Soluções pensadas para reduzir falhas e elevar a estabilidade operacional."]
+                    ["panel", "Painéis organizados", "Montagem limpa, identificada e pronta para operação."],
+                    ["file", "Documentação em CAD", "Diagramas e layouts técnicos para manutenção."],
+                    ["shield", "Segurança operacional", "Soluções pensadas para reduzir falhas e paradas."]
                   ].map(([icon, title, text]) => (
                     <div key={title} className="hero-panel-item">
                       <span><Icon name={icon} className="h-5 w-5" /></span>
