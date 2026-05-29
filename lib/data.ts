@@ -104,5 +104,33 @@ export const portfolioCases = [
       "Lista de componentes",
       "Documentação técnica"
     ]
+  },
+  {
+    category: "Manutenção Preventiva",
+    title: "Inspeção técnica e plano preventivo de painéis",
+    description:
+      "Avaliação programada de componentes, conexões, identificação e condições operacionais para reduzir riscos de falha.",
+    scope:
+      "Aplicação indicada para empresas que precisam manter painéis elétricos confiáveis, documentados e com menor risco de parada inesperada.",
+    deliveries: [
+      "Inspeção visual",
+      "Verificação de conexões",
+      "Relatório técnico",
+      "Plano de manutenção"
+    ]
+  },
+  {
+    category: "Adequação Elétrica",
+    title: "Adequação técnica de painel e comandos elétricos",
+    description:
+      "Correções, reorganização e padronização de circuitos para melhorar leitura técnica, segurança e confiabilidade.",
+    scope:
+      "Aplicação indicada para painéis que precisam de organização, identificação, melhoria de comandos e adequação ao padrão operacional.",
+    deliveries: [
+      "Mapeamento do painel",
+      "Correções elétricas",
+      "Padronização interna",
+      "Atualização de identificação"
+    ]
   }
 ];

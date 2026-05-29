@@ -10,10 +10,15 @@ function Placeholder({ index }: { index: number }) {
   return (
     <div className="portfolio-visual">
       <div className="technical-grid" />
-      <span className={`visual-shape visual-shape-${index + 1}`} />
-      <span className="visual-line visual-line-red" />
-      <span className="visual-line visual-line-dark" />
-      <span className="visual-chip" />
+      <div className={`panel-mockup panel-mockup-${(index % 4) + 1}`}>
+        <span className="panel-rail" />
+        <span className="panel-module panel-module-main" />
+        <span className="panel-module panel-module-small" />
+        <span className="panel-module panel-module-accent" />
+        <span className="panel-wire panel-wire-a" />
+        <span className="panel-wire panel-wire-b" />
+        <span className="panel-terminal" />
+      </div>
     </div>
   );
 }
@@ -23,12 +28,13 @@ export function PortfolioCard({ item, index }: { item: PortfolioCase; index: num
 
   return (
     <>
-      <article className="premium-card portfolio-card">
+      <article className={`premium-card portfolio-card ${index === 0 ? "portfolio-card-featured" : ""}`}>
         <Placeholder index={index} />
         <div className="portfolio-content">
           <span className="eyebrow">{item.category}</span>
           <h2>{item.title}</h2>
           <p>{item.description}</p>
+          <strong className="portfolio-deliveries-title">Entregas</strong>
           <ul>
             {item.deliveries.map((delivery) => (
               <li key={delivery}>
