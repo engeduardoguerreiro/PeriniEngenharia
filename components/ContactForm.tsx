@@ -38,7 +38,8 @@ function formatPhone(value: string) {
 }
 
 export function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [feedbackMessage, setFeedbackMessage] = useState("");
   const [service, setService] = useState("");
   const [phone, setPhone] = useState("");
   const messagePlaceholder = useMemo(
@@ -47,9 +48,19 @@ export function ContactForm() {
   );
 
   async function sendQuoteRequest(formData: FormData) {
-    await new Promise((resolve) => setTimeout(resolve, 700));
-    console.info("Solicitação de orçamento preparada para envio:", Object.fromEntries(formData.entries()));
-    return { ok: true };
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(Object.fromEntries(formData.entries()))
+    });
+
+    const data = (await response.json().catch(() => null)) as { message?: string } | null;
+    return {
+      ok: response.ok,
+      message: data?.message
+    };
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -58,12 +69,17 @@ export function ContactForm() {
 
     if (!form.checkValidity()) {
       form.reportValidity();
+      setFeedbackMessage("Preencha os campos obrigatórios para enviar sua solicitação.");
       setStatus("error");
       return;
     }
 
+    setStatus("loading");
+    setFeedbackMessage("");
+
     const result = await sendQuoteRequest(new FormData(form));
     if (!result.ok) {
+      setFeedbackMessage(result.message ?? "Não foi possível enviar sua solicitação agora. Tente novamente.");
       setStatus("error");
       return;
     }
@@ -71,6 +87,10 @@ export function ContactForm() {
     form.reset();
     setService("");
     setPhone("");
+    setFeedbackMessage(
+      result.message ??
+        "Solicitação recebida. Obrigado pelo contato. Nossa equipe técnica retornará o mais breve possível."
+    );
     setStatus("success");
   }
 
@@ -118,11 +138,11 @@ export function ContactForm() {
         </label>
       </div>
 
-      {status !== "idle" ? (
+      {status !== "idle" && status !== "loading" ? (
         <div className={`form-status ${status}`}>
           {status === "success" ? (
             <>
-              Solicitação enviada com sucesso. Retornaremos com uma avaliação técnica.{" "}
+              {feedbackMessage}{" "}
               <a
                 href="https://wa.me/5511930230911?text=Ol%C3%A1%2C%20enviei%20uma%20solicita%C3%A7%C3%A3o%20pelo%20site%20da%20Perini%20Engenharia%20e%20gostaria%20de%20acompanhar%20pelo%20WhatsApp."
                 target="_blank"
@@ -133,13 +153,13 @@ export function ContactForm() {
               .
             </>
           ) : (
-            "Preencha os campos obrigatórios para enviar sua solicitação."
+            feedbackMessage
           )}
         </div>
       ) : null}
 
-      <button type="submit" className="button button-primary form-button">
-        Enviar solicitação
+      <button type="submit" className="button button-primary form-button" disabled={status === "loading"}>
+        {status === "loading" ? "Enviando..." : "Enviar solicitação"}
         <Icon name="send" className="h-5 w-5" />
       </button>
     </form>
