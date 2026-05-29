@@ -1004,6 +1004,7 @@ textarea {
 .contact-grid {
   display: grid;
   gap: 2rem;
+  align-items: start;
 }
 
 .contact-form,
@@ -1011,7 +1012,13 @@ textarea {
   border: 1px solid var(--line);
   background: var(--white);
   box-shadow: var(--shadow);
-  padding: 1.5rem;
+  padding: 1.75rem;
+}
+
+.contact-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
 }
 
 .form-grid {
@@ -1083,11 +1090,43 @@ textarea {
 }
 
 .contact-aside h2 {
-  margin-top: 1.5rem;
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.contact-aside ul {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+}
+
+.contact-aside li {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: start;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  overflow-wrap: normal;
+}
+
+.contact-aside li + li {
+  margin-top: 0;
+}
+
+.contact-aside li svg {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.16rem;
+  color: var(--red);
+  flex: none;
 }
 
 .contact-aside .button {
-  margin-top: 2rem;
+  margin-top: 0.35rem;
 }
 
 .footer {
@@ -1264,7 +1303,7 @@ textarea {
   }
 
   .contact-grid {
-    grid-template-columns: 1fr 0.42fr;
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.42fr);
   }
 
   .footer-grid {
